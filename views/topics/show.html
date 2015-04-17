@@ -1,11 +1,33 @@
 <!-- //this is the page that shows one individual topic and it's comments
 //this page displays when you click an individual topic link from the list page -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title></title>
+  <meta charset="UTF-8">
+  <title>Show page for topics</title>
 </head>
 <body>
-
+  <h2>You Selected this Awesome Topic:</h2>
+    <ul> 
+        <li>{{title}}</li>
+        <li>{{body}}</li>
+        <li>{{author}}</li>
+      </ul>
+  <h3>Got something to say? Of course you do. Say it here.</h3>
+    <form action="/topics/id/comments" method="PUT">
+      <label>
+        Your 2 Cents:
+        <input type="text" name="comment">
+          <button type="submit">Submit</button>
+      </label>
+    <br>
+  <h3>And here is everyone else's 2 cents.</h3>
+    <ul>
+      <li>{{comment}}</li>
+  </form>
+<!-- 
+  <form method="POST" action="/puppies/{{id}}?_method=DELETE">
+    <button type="submit">Delete</button>
+  </form> -->
 </body>
 </html>

@@ -7,6 +7,12 @@
   <title></title>
 </head>
 <body>
-
+<h1>These are our amazing topics! Please pick one.</h1>
+  <ul>
+    {{#allTopics}}
+      <li><a href="/topics/{{id}}">{{title}}</a></li>
+    {{/allTopics}}
+  </ul>
+  <a href="/topics/new"><h2>OR!, Create a New Topic</h2></a>
 </body>
 </html>
