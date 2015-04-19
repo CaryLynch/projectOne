@@ -8,26 +8,22 @@
 </head>
 <body>
   <h2>You Selected this Awesome Topic:</h2>
-    <ul> 
-        <li>{{title}}</li>
-        <li>{{body}}</li>
-        <li>{{author}}</li>
-      </ul>
-  <h3>Got something to say? Of course you do. Say it here.</h3>
-    <form action="/topics/id/comments" method="PUT">
+        <h3>{{title}}</h3>
+        <p>{{body}}</p>
+        <p>Signed, {{author}}</p>
+  <h3>Got something to say? Of course you do. Say it below.</h3>
+    <form action="/topics/{{id}}/comment" method="POST">
       <label>
         Your 2 Cents:
-        <input type="text" name="comment">
+        <input type="text" name="comments">
           <button type="submit">Submit</button>
-      </label>
-    <br>
+      </label><br>
   <h3>And here is everyone else's 2 cents.</h3>
     <ul>
+      {{#comments}}
       <li>{{comment}}</li>
-  </form>
-<!-- 
-  <form method="POST" action="/puppies/{{id}}?_method=DELETE">
-    <button type="submit">Delete</button>
-  </form> -->
+      {{/comments}}
+    </ul>
+    </form>
+    <a href="/topics">Back to Topics List</a>
 </body>
-</html>
