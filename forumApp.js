@@ -39,13 +39,16 @@ app.get('/topics/new', function(req, res){
 
 // this post inserts a new topic into the topic table and then redirects to the list page (get('.topics'))
 app.post('/topics/create', function(req, res){
-  // console.log(req.body);
+  console.log(req.body);
+  // var newBody = req.body.replace("/\/", "andy" );
+  // console.log(newBody)
   db.run("INSERT INTO topics (title, body, vote, author) VALUES ('" + req.body.title + "', '" + req.body.body + "', '" + req.body.vote + "', '" + req.body.author + "')");
   res.redirect('/topics');
 }); 
 
 // this post inserts a new comment and the users location into the comment table and then redirects to the list page (get('.topics'))
 app.post('/topics/:id/comment', function(req, response){
+  // console.log(comments[0].length);
   var id = req.params.id;
   // console.log(req.body);
   request.get("http://ipinfo.io/geo", function(err, res, body) {
@@ -63,9 +66,9 @@ app.put('/topics/:id', function(req, response){
     response.redirect('/topics/' + id);
 });
 
-
 // page that displays the individual topics and their comments with the ability to vote for that topic and add a comment
 app.get('/topics/:id', function(req, res){
+  // console.log(comments.comment.length);
   var id = req.params.id;
   // var renderedHTML;
   db.all("SELECT * FROM topics WHERE id = " + id + ";", {}, function(err, topic){
@@ -73,13 +76,17 @@ app.get('/topics/:id', function(req, res){
           // console.log(comments);
           fs.readFile('./views/topics/show.html', 'utf8', function(err, temp){
             // console.log(topic);
-            var renderedHTML = Mustache.render(temp, {id:topic[0].id, title:topic[0].title,  body:topic[0].body, author:topic[0].author, comments: comments});
+            var renderedHTML = Mustache.render(temp, {id:topic[0].id, title:topic[0].title,  body:topic[0].body, author:topic[0].author, vote:topic[0].vote, comments: comments});
              res.send(renderedHTML);
          });     
       });
     });
 });
 
+// db.run("SELECT * FROM topics LEFT JOIN comments GROUP BY comment ORDER BY DESC")
+
+ // SELECT NAME, SUM(SALARY) 
+ //         FROM COMPANY GROUP BY NAME ORDER BY NAME DESC;
 
 
 app.listen(3000, function() {

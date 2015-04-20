@@ -12,6 +12,7 @@
         <h3>{{title}}</h3>
         <p>{{body}}</p>
         <p>Signed, {{author}}</p>
+        <p>Votes: {{vote}}</p>
 
           <form action="/topics/{{id}}?_method=PUT" method="POST">
             <label>
@@ -24,13 +25,12 @@
       <label>
         Your 2 Cents:
         <input type="text" name="comments">
-          <button type="submit">Submit</button>
+          <input type="submit" value="comment">
       </label><br>
   <h3>And here is everyone else's 2 cents.</h3>
     <ul>
       {{#comments}}
-      <li>{{comment}}</li>
-      <li>{{location}}</li>
+      <li>{{comment}}  |  Located in: {{location}}</li>
       {{/comments}}
     </ul>
     </form>
