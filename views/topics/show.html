@@ -8,9 +8,17 @@
 </head>
 <body>
   <h2>You Selected this Awesome Topic:</h2>
+
         <h3>{{title}}</h3>
         <p>{{body}}</p>
         <p>Signed, {{author}}</p>
+
+          <form action="/topics/{{id}}?_method=PUT" method="POST">
+            <label>
+              Like this topic? Vote for it!
+                <button type="vote">Vote</button>
+            </label>
+        </form>
   <h3>Got something to say? Of course you do. Say it below.</h3>
     <form action="/topics/{{id}}/comment" method="POST">
       <label>
@@ -22,6 +30,7 @@
     <ul>
       {{#comments}}
       <li>{{comment}}</li>
+      <li>{{location}}</li>
       {{/comments}}
     </ul>
     </form>
