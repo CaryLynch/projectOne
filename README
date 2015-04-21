@@ -1,0 +1,76 @@
+##Cary's ProjectOne_Forum
+
+###A user can...
+
+* View topics
+  * The user will be greeted on a home page that will give them a link to get to a page that will display all of the topics.
+  * The user will be able to see all of the topics listed by default according to how many votes they have.
+  * The user will be able to also click a link to list the topics according to how many comments they have.
+  * The user will be able to view any one topic title and the body of that topic, along with number of votes that topic has and all of the comments made on that topic.
+
+---
+* Add new
+  * The user can add a new topic.
+  * The user can add a new comment on an individual topic.
+
+---
+* Vote & Comment
+  * The user will be able to vote for a topic.
+  * The user will be able to comment on a topic.
+
+  ---
+##ERD
+<img src = "http://i.imgur.com/1YNXcFF.jpg"/ size='50%'>
+##WIREFRAME
+<img src = "http://i.imgur.com/vRXjdBh.jpg"/ size='50%'>
+
+---
+APIs or modules used and descriptions of each
+---
+
+**1. Node** -library used for the following modules.
+
+**2. Sqlite3** is the node module used to create a database and adding/retrieving information.
+
+**3. Mustache** used to render information from the database into the html files.
+
+**4. Node (fs)** used to open and read the needed files.
+
+**5. Express** used for HTTP requests.
+
+**6. Morgan** used for displaying HTTP requests made while accessing the forum.
+
+**7. Body Parser** used for parsing the body of the HTTP response.
+
+**8. Method Override** used for PUT and DELETE methods in html files
+
+**9. Digital Ocean** used to deploy the local server as a remote server.
+
+**10. Marked** module used to parse markdown syntax and render it as HTML syntax
+
+**11. IPInfo (API) ** used for retrieving the client's current city location via IP address.
+
+---
+
+Instructions for downloading the code and running it on localhost:
+  * Go to my github repo for this project and download the entire repo from download as zip. https://github.com/CaryLynch/projectOne
+
+  * Unzip the file and open terminal.
+  * Navigate to the folder where the files are.
+  * install node
+
+```
+sudo apt-get install git
+sudo apt-get install nodejs
+sudo apt-get install npm
+npm install (to install all of the modules in the package.json)
+npm install -g nodemon
+```
+node forumSeed.js (to seed the file)
+nodemon forumApp.js (to launch local server)
+open a browser window and type in localhost:3000
+
+---
+
+Link to the live url of your hosted project:
+http://104.131.88.64:3000/
