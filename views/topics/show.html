@@ -6,23 +6,24 @@
   <meta charset="UTF-8">
   <title>Show page for topics</title>
 </head>
-<body>
-  <h2>You Selected this Awesome Topic:</h2>
-
-        <h3>{{title}}</h3>
-        <p>{{body}}</p>
-        <p>Signed, {{author}}</p>
-        <p>Votes: {{vote}}</p>
-
-          <form action="/topics/{{id}}?_method=PUT" method="POST">
-            <label>
+<body link="#4b3832" vlink="#4b3832" alink="#ffffff">
+<body background="http://i.imgur.com/S2jrsil.jpg">
+  <h3><font color="#4b3832">You Selected this Awesome Topic:</font></h3>
+        
+          <DL>
+            <DT><font color="white"><h1>{{title}}</h1></font>
+            <DD>{{body}}
+            <DD>Signed, {{author}}
+            <DD>Votes: {{vote}}
+          <form action="/topics/{{id}}?_method=PUT" method="POST"><br>
+            <label><h2>
               Like this topic? Vote for it!
                 <button type="vote">Vote</button>
-            </label>
+            </label></h2>
         </form>
-  <h3>Got something to say? Of course you do. Say it below.</h3>
+  <h3><font color="white">Got something to say? Of course you do. Say it below.</font></h3>
     <form action="/topics/{{id}}/comment" method="POST">
-      <label>
+      <label><font color="white">
         Your 2 Cents:
         <input type="text" name="comments">
           <input type="submit" value="comment">
@@ -32,7 +33,7 @@
       {{#comments}}
       <li>{{comment}}  |  Located in: {{location}}</li>
       {{/comments}}
-    </ul>
+    </ul></font>
     </form>
-    <a href="/topics">Back to Topics List</a>
+    <a href="/topics"><font color="white">Back to Topics List</font></a>
 </body>
