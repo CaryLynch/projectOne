@@ -27,10 +27,42 @@ app.get('/', function(req, res){
 app.get('/topics', function(req, res){
   var template = fs.readFileSync('./views/topics/index.html', 'utf8');
   db.all("SELECT * FROM topics ORDER BY vote DESC", function(err, topics){
+      console.log(topics);
     var html = Mustache.render(template, {allTopics: topics});
     res.send(html);
   });
 });
+
+// page where all topics are listed according to number of comments and a user can add a new topic
+app.get('/topics/reorder', function(req, res){
+  var template = fs.readFileSync('./views/topics/index2.html', 'utf8');
+  //selecting number of times each individual topic id shows up in the comments table then groups them together by their topics id number and the orders them by the number of times they are there. 
+  // db.all("SELECT count(topics_id) FROM comments GROUP BY topics_id ORDER BY count(topics_id) DESC;", 
+db.all("SELECT * FROM topics LEFT JOIN comments WHERE id = topics_id GROUP BY title ORDER BY count(topics_id) DESC;", function(err, topics){
+    console.log(topics);
+    var html = Mustache.render(template, {allTopics: topics});
+    res.send(html);
+  });
+});
+
+// db.all('SELECT * FROM topics LEFT JOIN comments WHERE topicID = trackTopic GROUP BY topic ORDER BY count(trackerID) DESC;'
+// app.get('/topics/comments', topics.getByComments);
+
+// A J Abdelaziz [6:54 PM]
+// getByComments: function (req, res) {
+//   var template = fs.readFileSync('./views/byComments.html', 'utf8');
+ 
+//   db.all('SELECT * FROM topics LEFT OUTER JOIN comments WHERE topicID = trackTopic GROUP BY topic ORDER BY entry DESC;', function (err, topics) {
+//     var html = Mustache.render(template, {allTopics: topics});
+//     res.send(html);
+//   })
+
+//  },
+
+// db.run("SELECT * FROM topics LEFT JOIN comments GROUP BY comment ORDER BY DESC")
+
+ // SELECT NAME, SUM(SALARY) 
+ //         FROM COMPANY GROUP BY NAME ORDER BY NAME DESC;
 
 app.get('/topics/new', function(req, res){
   var read = fs.readFileSync('./views/topics/new.html', 'utf8');
@@ -82,12 +114,6 @@ app.get('/topics/:id', function(req, res){
       });
     });
 });
-
-// db.run("SELECT * FROM topics LEFT JOIN comments GROUP BY comment ORDER BY DESC")
-
- // SELECT NAME, SUM(SALARY) 
- //         FROM COMPANY GROUP BY NAME ORDER BY NAME DESC;
-
 
 app.listen(3000, function() {
   console.log("LISTENING!");
